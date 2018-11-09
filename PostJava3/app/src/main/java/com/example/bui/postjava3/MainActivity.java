@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         String charset = "UTF-8";  // Or in Java 7 and later, use the constant: java.nio.charset.StandardCharsets.UTF_8.name()
         File imm = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/KTA");
         Bitmap bMap = BitmapFactory.decodeFile(imm+"Provaimmagine.jpg");
-        String data = "";
+        //String data = "";
 // ...
 
         try {
@@ -43,18 +43,21 @@ public class MainActivity extends AppCompatActivity {
             connection.setRequestProperty("Accept-Charset", charset);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
 
-        OutputStream output = connection.getOutputStream()) {
+        OutputStream output = connection.getOutputStream();
             output.write(bMap.toString());
+
 
             InputStream response = connection.getInputStream();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
+        } catch (java.net.MalformedURLException e){
+            e.printStackTrace();
         }
 
 
-
+    }
 //
     }
-}
+
