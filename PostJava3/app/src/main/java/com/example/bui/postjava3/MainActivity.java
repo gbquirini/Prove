@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             String temp=Base64.encodeToString(b, Base64.DEFAULT);
 
         OutputStream output = connection.getOutputStream();
-            output.write(temp.toString());
+            output.write(temp.getBytes(),0 ,temp.length());
 
 
             InputStream response = connection.getInputStream();
@@ -60,9 +60,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
-        } catch (java.net.MalformedURLException e){
-            e.printStackTrace();
-        }
+        } 
 
 
     }
