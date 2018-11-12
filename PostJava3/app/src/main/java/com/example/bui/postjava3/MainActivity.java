@@ -5,7 +5,9 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,8 +45,14 @@ public class MainActivity extends AppCompatActivity {
             connection.setRequestProperty("Accept-Charset", charset);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
 
+
+            ByteArrayOutputStream baos=new ByteArrayOutputStream();
+            bMap.compress(Bitmap.CompressFormat.PNG,100, baos);
+            byte [] b=baos.toByteArray();
+            String temp=Base64.encodeToString(b, Base64.DEFAULT);
+
         OutputStream output = connection.getOutputStream();
-            output.write(bMap.toString());
+            output.write(temp.toString());
 
 
             InputStream response = connection.getInputStream();
