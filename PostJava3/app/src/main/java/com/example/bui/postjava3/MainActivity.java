@@ -28,16 +28,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String url = "http://example.com";
-        String charset = "UTF-8";  // Or in Java 7 and later, use the constant: java.nio.charset.StandardCharsets.UTF_8.name()
+        String charset = "UTF-8";
         File imm = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/KTA");
         Bitmap bMap = BitmapFactory.decodeFile(imm+"Provaimmagine.jpg");
-        //String data = "";
-// ...
-
         try {
-            /* outputStreamWriter = new OutputStreamWriter(bMap);
-            outputStreamWriter.write(data);
-            outputStreamWriter.close();*/
+
+            
             URLConnection connection = null;
 
             connection = new URL(url).openConnection();
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
-        } 
+        }
 
 
     }
