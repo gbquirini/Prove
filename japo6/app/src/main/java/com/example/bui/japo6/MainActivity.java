@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private ImageView imgView;
     private final int img_req = 1;
     private Bitmap bitmap;
-    private String UpUrl = "https://daInserire.it";
+    private String UpUrl = "http://192.168.1.21/KofaxRTTI/api/ZUtenti";
 
 
     @Override
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         imgView = findViewById(R.id.imageView);
         Upbn.setOnClickListener(this);
         Chbn.setOnClickListener(this);
+        Toast.makeText(MainActivity.this, "testo", Toast.LENGTH_LONG);
     }
 
     @Override
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(MainActivity.this,"Errore nell'url", Toast.LENGTH_LONG);
                 }
             }
         }, new Response.ErrorListener(){
@@ -113,10 +116,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String,String> params = new HashMap<>();
+
                 params.put("name",NAME.getText().toString().trim());
                 params.put("image",imageToString(bitmap));
+
                 return params;
             }
         };
