@@ -13,21 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +32,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private ImageView imgView;
     private final int img_req = 1;
     private Bitmap bitmap;
-    private String UpUrl = "https://porcamadonna.org";
+    private String UpUrl = "https://daInserire.it";
 
 
     @Override
@@ -93,8 +87,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private void uploadImage(){
 
-        StringRequest strigRequest = new StringRequest(DownloadManager.Request.Method.POST,UpUrl,new Response.Listeners<String>(){
-            @Override
+        StringRequest strigRequest = new StringRequest(Request.Method.POST,UpUrl,
+                new Response.Listener<String>(){
+
             public void onResponse(String response){
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -120,7 +115,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params put("name",NAME.getText().toString().trim())
+                params.put("name",NAME.getText().toString().trim());
                 params.put("image",imageToString(bitmap));
                 return params;
             }
@@ -128,7 +123,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         MySingleton.getmInstance(MainActivity.this).addToRequestQue(strigRequest);
     }
 
-    private void imageToString(Bitmap bitmap){
+    private String imageToString(Bitmap bitmap){
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
