@@ -1,6 +1,6 @@
 package com.example.bui.japo6;
 
-import android.app.DownloadManager;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,13 +8,11 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,7 +26,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
-    private Button Upbn,Chbn;
+    private Button Upbn;
+    private Button Chbn;
     private EditText NAME;
     private ImageView imgView;
     private final int img_req = 1;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         imgView = findViewById(R.id.imageView);
         Upbn.setOnClickListener(this);
         Chbn.setOnClickListener(this);
-        Toast.makeText(MainActivity.this, "testo", Toast.LENGTH_LONG);
+        Toast.makeText(MainActivity.this, "testo", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -120,8 +119,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             protected Map<String, String> getParams() {
                 Map<String,String> params = new HashMap<>();
 
-                params.put("name",NAME.getText().toString().trim());
-                params.put("image",imageToString(bitmap));
+                params.put("processIA--mage",imageToString(bitmap));
+                params.put("imageResult","true");
                 params.put("xTipoDocumento","CI_C");
                 params.put("xCognome","Luna");
                 params.put("xNome","Federico");
