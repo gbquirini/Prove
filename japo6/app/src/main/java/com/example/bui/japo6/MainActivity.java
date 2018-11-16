@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     private void uploadImage(){
 
-        StringRequest strigRequest = new StringRequest(Request.Method.POST,UpUrl,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,UpUrl,
                 new Response.Listener<String>(){
 
             public void onResponse(String response){
@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this,"Errore nell'url", Toast.LENGTH_LONG);
+                    Toast.makeText(MainActivity.this,"Errore nell'url", Toast.LENGTH_LONG).show();
+
                 }
             }
         }, new Response.ErrorListener(){
@@ -121,11 +122,15 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                 params.put("name",NAME.getText().toString().trim());
                 params.put("image",imageToString(bitmap));
+                params.put("xTipoDocumento","CI_C");
+                params.put("xCognome","Luna");
+                params.put("xNome","Federico");
+                params.put("xDataNascita","27/04/1997");
 
                 return params;
             }
         };
-        MySingleton.getmInstance(MainActivity.this).addToRequestQue(strigRequest);
+        MySingleton.getmInstance(MainActivity.this).addToRequestQue(stringRequest);
     }
 
     private String imageToString(Bitmap bitmap){
