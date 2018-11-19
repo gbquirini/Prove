@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private ImageView imgView;
     private final int img_req = 1;
     private Bitmap bitmap;
-    private String UpUrl = "http://192.168.1.21/KofaxRTTI/api/ZUtenti";
+    private String UpUrl = "http://192.168.1.21/kofaxRTTI/api/ZUtenti";
 
 
     @Override

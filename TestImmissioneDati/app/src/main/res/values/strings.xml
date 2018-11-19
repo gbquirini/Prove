@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestImmissioneDati</string>
+    <string name="Nome">Name</string>
+    <string name="ID">Tipo di carta di identità</string>
+    <string name="nome">nome</string>
+    <string name="cognome">cognome</string>
+    <string name="t1">TextView</string>
+    <string name="c2">Name</string>
+</resources>
