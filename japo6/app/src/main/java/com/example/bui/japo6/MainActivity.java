@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         imgView = findViewById(R.id.imageView);
         Upbn.setOnClickListener(this);
         Chbn.setOnClickListener(this);
-        Toast.makeText(MainActivity.this, "testo", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 NAME.setVisibility(View.VISIBLE);
 
 
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -91,11 +92,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         StringRequest stringRequest = new StringRequest(Request.Method.POST,UpUrl,
                 new Response.Listener<String>(){
 
+
             public void onResponse(String response){
                 try {
+
                     JSONObject jsonObject = new JSONObject(response);
                     String Response = jsonObject.getString("response");
                     Toast.makeText(MainActivity.this,Response,Toast.LENGTH_LONG).show();
+
                     imgView.setImageResource(0);
                     imgView.setVisibility(View.GONE);
                     NAME.setText("");
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             protected Map<String, String> getParams() {
                 Map<String,String> params = new HashMap<>();
 
-                params.put("processIA--mage",imageToString(bitmap));
+                params.put("documento",imageToString(bitmap));
                 params.put("imageResult","true");
                 params.put("xTipoDocumento","CI_C");
                 params.put("xCognome","Luna");
@@ -133,6 +137,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
 
     private String imageToString(Bitmap bitmap){
+
+
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
         byte[] imgBytes = byteArrayOutputStream.toByteArray();
