@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + ET.getText() + "," + ET2.getText() + "&key=AIzaSyBdcKcNjzL77gY3hU370aazEf7cgWYTYVM";
+        //Url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + ET.getText() + "," + ET2.getText() + "&key=AIzaSyBdcKcNjzL77gY3hU370aazEf7cgWYTYVM";
+        Url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=43.07,12.35&key=AIzaSyBdcKcNjzL77gY3hU370aazEf7cgWYTYVM";
 
         RequestQueue queue; //= Volley.newRequestQueue(this);
 
@@ -71,14 +72,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(MainActivity.this, "ci siamo", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                        Log.d("MainActivity",response.toString());
+
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-
+                        //Log.d("MainActivity",error.toString());
                     }
                 });
 
